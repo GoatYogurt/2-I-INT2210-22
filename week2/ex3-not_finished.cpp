@@ -13,23 +13,19 @@ struct Node {
     Node* next;
 };
 
-Node* pushNode(Node* node) {
+Node* pushNode(Node* head, Node* node) {
     if (head == nullptr) {
-        head = newNode;
-        return head;
+        head = node;
+    } else if (head->next == nullptr) {
+        head->next = node;
     }
-    Node* current = head, *previous = nullptr;
-    int i = 0;
-    while (current != nullptr) {
-        if (i == position) {
-            break;
+    else {
+        Node* current = head;
+        while (current->next != nullptr) {
+            current = current->next;
         }
-        previous = current;
-        current = current->next;
-        ++i;
+        current->next = node;
     }
-    previous->next = newNode;
-    newNode->next = current;
     return head;
 }
 
@@ -37,28 +33,39 @@ int count_triplets(Node* head) {
     int count = 0;
     Node* current = head;
     while (current->next != nullptr) {
-        current = current->next;
         if (current->prev != nullptr) {
             if (current->prev->data + current->data + current->next->data == 0) {
             count++;
             }
         }
+        current = current->next;
     }
+    return count;
 }
 
-Node* readNumber(int n) {
+Node* readNumber(Node* head, int n) {
     for (int i = 1; i <= n; ++i) {
         int data;
         cin >> data;
-        Node* newNode = Node(data);
+        Node* newNode = new Node(data);
+        pushNode(head, newNode);
+    }
+    return head;
+
+}
+
+void printNode(Node* head) {
+    Node* current = head;
+    while (current != nullptr) {
+        cout << current->data << " ";
+        current = current->next;
     }
 }
 
 int main() {
     int n;
-    int [n];
-    for (int i = 1; i <= n; ++i) {
-        int data;
-        cin >> data;
-    }
+    cin >> n;
+    Node* head = nullptr;
+    readNumber(head, n);
+    printNode(head);
 }
