@@ -1,0 +1,88 @@
+O(1) < O(logn) < O(n) < O(n^2)
+Ex1. Sắp xếp theo chiều tăng của Big O:
+1. 2^10 : O(1)
+2. 3n + 100logn = 4n : O(n)
+3. 4nlogn + 2n = nlogn : O(nlogn)
+4. n^2 + 10n : O(n^2)
+5. n^3 : O(n^3)
+6. 2^logn : O(?)
+7. 2^n : O(?) 
+
+Ex2.
+Cách 1.
+result = 1
+for 1 to n:
+    result *= 2
+return result
+
+Độ phức tạp: O(n)
+
+Cách 2.
+function powTwo(n):
+    if n = 0 then return 1
+    return 2*powTwo(n - 1)
+
+Độ phức tạp: O(n)
+
+Ex3.
+int array[n];A
+int head = 0, tail = 0;
+
+function add(value):
+    if tail < n-1 then:
+        tail++;
+        array[tail] = value
+
+->Độ phức tạp: O(1)
+
+function remove():
+    if head < tail then:
+        head++;
+
+->Độ phức tạp: O(1)
+
+Ex4.
+Mặc định class Node có 2 thuộc tính value và con trỏ đến Node tiếp theo.
+Đối tượng queue có 2 thuộc tính kiểu Node* là head trỏ đến đầu danh sách
+và tail trỏ tới cuối danh sách.
+
+function add(Node* node):
+    tail->next = node
+    tail = tail->next
+
+->Độ phức tạp: O(1)
+
+function remove():
+    Node* oldHead = head
+    head = head->next
+    delete head
+
+->Độ phức tạp: O(1)
+
+Ex5.
+int array[n]
+int top = 0
+
+function push(value):
+    array[top+1] = value
+    top++
+
+->Độ phức tạp: O(1)
+
+function pop():
+    if top >= 0:
+        top--
+
+-> Độ phức tạp: O(1)
+
+
+
+
+
+
+
+
+
+
+
+
