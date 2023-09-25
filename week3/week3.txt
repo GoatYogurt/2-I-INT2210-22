@@ -75,6 +75,24 @@ function pop():
 
 -> Độ phức tạp: O(1)
 
+Ex6.
+Mặc định class Node có 2 thuộc tính value và con trỏ đến Node tiếp theo.
+Đối tượng stack có thuộc tính kiểu Node* là top trỏ đến đỉnh danh sách
+
+function push(Node* node):
+    top->next = node
+    top = top->next
+
+->Độ phức tạp: O(1)
+
+function pop():
+    delete top
+    Node* current = head
+    while current->next != nullptr
+        current = current->next
+    top = current
+
+-> Độ phức tạp O(n)
 
 
 
