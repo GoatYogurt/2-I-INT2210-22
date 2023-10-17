@@ -1,38 +1,52 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <vector>
+
 using namespace std;
 
+vector<vector<int>> adjList;
 vector<bool> visited;
-vector<vector<int>> adj;
 
-void dfs(int v) {
-    visited[v] = true;
-    for (int u : adj[v]) {
-        if (!visited[u])
-            dfs(u);
+void dfs(int node) {
+    visited[node] = true;
+
+    // Traverse all adjacent nodes
+    for (int neighbor : adjList[node]) {
+        if (!visited[neighbor]) {
+            dfs(neighbor);
+        }
     }
 }
 
-int main() {
-    int nodeCount, edgeCount;
-    cin >> nodeCount >> edgeCount;
+int countConnectedComponents(int n) {
+    int connectedComponents = 0;
+    visited.resize(n + 1, false);
 
-    adj.assign(nodeCount, vector<int>());
-    visited.assign(nodeCount, false);
-
-    for (int i = 0; i < edgeCount; ++i) {
-        int x, y;
-        cin >> x >> y;
-        adj[x].push_back(y);
-        adj[y].push_back(x);
-    }
-
-    int countCC = 0;
-    for (int i = 0; i < nodeCount; ++i) {
+    for (int i = 1; i <= n; i++) {
         if (!visited[i]) {
             dfs(i);
-            countCC++;
+            connectedComponents++;
         }
     }
-    cout << countCC << endl;
+
+    return connectedComponents;
+}
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+
+    adjList.resize(n + 1);
+
+    for (int i = 0; i < m; i++) {
+        int x, y;
+        cin >> x >> y;
+
+        adjList[x].push_back(y);
+        adjList[y].push_back(x);
+    }
+
+    int numConnectedComponents = countConnectedComponents(n);
+    cout << numConnectedComponents << endl;
+
     return 0;
 }
