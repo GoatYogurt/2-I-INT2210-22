@@ -9,7 +9,6 @@ vector<bool> visited;
 void dfs(int node) {
     visited[node] = true;
 
-    // Traverse all adjacent nodes
     for (int neighbor : adjList[node]) {
         if (!visited[neighbor]) {
             dfs(neighbor);

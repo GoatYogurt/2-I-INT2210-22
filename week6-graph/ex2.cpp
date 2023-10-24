@@ -9,7 +9,6 @@ vector<bool> visited;
 vector<int> dist;
 
 int shortestPath(int start, int end) {
-    // Initialize visited array and distance array
     visited.resize(adjList.size(), false);
     dist.assign(adjList.size(), -1);
     
@@ -22,7 +21,6 @@ int shortestPath(int start, int end) {
         int currNode = q.front();
         q.pop();
 
-        // Traverse all neighboring nodes
         for (int neighbor : adjList[currNode]) {
             if (!visited[neighbor]) {
                 q.push(neighbor);
@@ -45,7 +43,6 @@ int main() {
         int x, y;
         cin >> x >> y;
 
-        // Add the directed edge
         adjList[x].push_back(y);
     }
 
